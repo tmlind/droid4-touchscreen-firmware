@@ -1,0 +1,20 @@
+Droid 4 devices have mxt224 touchscreen controller with firwmare for it
+stored into the Motorola Linux kernel source tree as a binary licensed
+under GPLv2.
+
+This program allows generating the maxtouch.fw file out of the header
+file and it seems that file can be uploaded to the mxt224 via sysfs if
+somebody wants to attempt to it. I've only done it once and it seemed to
+still work after that. To do that, the firmware needs to be placed under
+/lib/firmware/maxtouch.fw and uploaded to the mxt224 device by doing:
+
+# echo 1 > /sys/.../i2c-1/1-004a/update_fw
+
+See also "mxt-app" program that can be used to save the maxtouch.cfg
+with:
+
+# mxt-app -d i2c-dev:1-004a --save /lib/firmware/maxtouch.cfg
+
+The "mxt-app" program can be found at:
+
+https://github.com/atmel-maxtouch/mxt-app
